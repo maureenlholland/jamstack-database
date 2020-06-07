@@ -9,6 +9,9 @@ const Todo = ({ todo, reload }) => {
             reload();
         });
     }
+    const deleteTodo = async () => {
+        await axios.post('/api/delete-todo', { id: todo._id }).then(() => reload());
+    };
     return (
         <>
         <label>
@@ -19,6 +22,7 @@ const Todo = ({ todo, reload }) => {
                 onChange={toggleCompleted}
             />
         </label>
+        <button onClick={deleteTodo}>Delete</button>
         </>
     );
 }
