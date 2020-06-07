@@ -39,8 +39,8 @@ export default () => {
             {todos ? (
                 <ul className={styles.todo}>
                     {todos.map(todo => (
-                        <li key={todo.id} className={styles.todo}>
-                            <Todo key={`todo-${todo.id}`} todo={todo} />
+                        <li key={todo._id} className={styles.todo}>
+                            <Todo todo={todo} reload={reloadTodos} />
                         </li>
                     ))}
                 </ul>
