@@ -5,12 +5,10 @@ import styles from './todo.module.css';
 const Todo = ({ todo, reload }) => {
     const toggleCompleted = async () => {
         const { _id, text, completed } = todo;
-        await axios.post('/api/toggle-completed', { id: _id, text, completed: !completed }).then(() => {
-            reload();
-        });
+        await axios.post('/api/toggle-completed', { id: _id, text, completed: !completed }).then(reload);
     }
     const deleteTodo = async () => {
-        await axios.post('/api/delete-todo', { id: todo._id }).then(() => reload());
+        await axios.post('/api/delete-todo', { id: todo._id }).then(reload);
     };
     return (
         <>
