@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styles from './index.module.css';
 import Todo from './components/todo';
+import Form from './components/form';
 
 export default () => {
     const [status, setStatus] = useState('loading');
@@ -11,8 +12,6 @@ export default () => {
     useEffect(() => {
         let cancelled = false;
         if (status !== 'loading') { return; }
-
-        console.log('using effect')
 
         axios('/api/get-all-todos')
             .then(result => {
@@ -30,9 +29,13 @@ export default () => {
 
         return () => { cancelled = true; }
     }, [status]);
+
+    const reloadTodos = () => setStatus('loading');
+
     return (
         <main>
             <h1 className={styles.heading}>Todos</h1>
+            <Form reload={reloadTodos} />
             {todos ? (
                 <ul className={styles.todo}>
                     {todos.map(todo => (
