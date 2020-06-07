@@ -1,0 +1,11 @@
+# ! means required
+type Todo {
+    text: String!
+    completed: Boolean
+}
+
+# we can get an empty arr back, but it can't be null,
+# items inside the array must be type todo
+type Query {
+    allTodos: [Todo!]!
+}
